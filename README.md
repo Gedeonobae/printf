@@ -161,10 +161,12 @@ Conversion specifiers to handle: d, i, u, o, x, X
 </ul>
 
 <h3>Authors </h3
+<ul>
+<li>GEDEON OBAE GEKONGE <[Gedeonobae](https://github.com/Gedeonobae)></li>
 
-*GEDEON OBAE GEKONGE <[Gedeonobae](https://github.com/Gedeonobae)>
-*Ruth Mensire <[Mensire](https://github.com/Mensire)>
 
+<li>Ruth Mensire <[Mensire](https://github.com/Mensire)></li>
+</ul>
 
 ## Acknowledgements :pray:
 
