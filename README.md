@@ -161,11 +161,11 @@ Conversion specifiers to handle: d, i, u, o, x, X
 </ul>
 
 <h3>Authors </h3
-<ul>
-<li>GEDEON OBAE GEKONGE <Gedeonobae></li>
-<li>Ruth Mensire <Mensire></li>
-</ul>
+
+*GEDEON OBAE GEKONGE <[Gedeonobae](https://github.com/Gedeonobae)>
+*Ruth Mensire <[Mensire](https://github.com/Mensire)>
+
 
 ## Acknowledgements :pray:
 
-The _printf function emulates functionality of the C standard library function printf. This README borrows from the Linux man page printf(3).
+The _printf function emulates functionality of the C standard libr:ary function printf. This README borrows from the Linux man page printf(3).
