@@ -159,7 +159,7 @@ Conversion specifiers to handle: d, i, u, o, x, X
 <p>All the above options work well together.</p>
 </li>
 </ul>
-
+<hr>
 <h3>Authors </h3
 
 
