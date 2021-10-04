@@ -1,84 +1,96 @@
+/*
+ * File: _printf.c
+ * Auth: Gedeon Obae Gekonge
+ *       Ruth Mensire
+ */
 
-#include <unistd.h>
 #include "main.h"
-#include <stdio.h>
+
+void cleanup(va_list args, buffer_t *output);
+int run_printf(const char *format, va_list args, buffer_t *output);
+int _printf(const char *format, ...);
 
 /**
- * buffer_print - print given buffer to stdout
- * @buffer: buffer to print
- * @nbytes: number of bytes to print
- *
- * Return: nbytes
+ * cleanup - Peforms cleanup operations for _printf.
+ * @args: A va_list of arguments provided to _printf.
+ * @output: A buffer_t struct.
  */
-int buffer_print(char buffer[], unsigned int nbytes)
+void cleanup(va_list args, buffer_t *output)
 {
-	write(1, buffer, nbytes);
-	return (nbytes);
+	va_end(args);
+	write(1, output->start, output->len);
+	free_buffer(output);
 }
 
 /**
- * buffer_add - adds a string to buffer
- * @buffer: buffer to fill
- * @str: str to add
- * @buffer_pos: pointer to buffer first empty position
+ * run_printf - Reads through the format string for _printf.
+ * @format: Character string to print - may contain directives.
+ * @output: A buffer_t struct containing a buffer.
+ * @args: A va_list of arguments.
  *
- * Return: if buffer filled and emptyed return number of printed char
- * else 0
+ * Return: The number of characters stored to output.
  */
-int buffer_add(char buffer[], char *str, unsigned int *buffer_pos)
+int run_printf(const char *format, va_list args, buffer_t *output)
 {
-	int i = 0;
-	unsigned int count = 0, pos = *buffer_pos, size = BUFFER_SIZE;
+	int i, wid, prec, ret = 0;
+	char tmp;
+	unsigned char flags, len;
+	unsigned int (*f)(va_list, buffer_t *,
+			unsigned char, int, int, unsigned char);
 
-	while (str && str[i])
+	for (i = 0; *(format + i); i++)
 	{
-		if (pos == size)
+		len = 0;
+		if (*(format + i) == '%')
 		{
-			count += buffer_print(buffer, pos);
-			pos = 0;
+			tmp = 0;
+			flags = handle_flags(format + i + 1, &tmp);
+			wid = handle_width(args, format + i + tmp + 1, &tmp);
+			prec = handle_precision(args, format + i + tmp + 1,
+					&tmp);
+			len = handle_length(format + i + tmp + 1, &tmp);
+
+			f = handle_specifiers(format + i + tmp + 1);
+			if (f != NULL)
+			{
+				i += tmp + 1;
+				ret += f(args, output, flags, wid, prec, len);
+				continue;
+			}
+			else if (*(format + i + tmp + 1) == '\0')
+			{
+				ret = -1;
+				break;
+			}
 		}
-		buffer[pos++] = str[i++];
+		ret += _memcpy(output, (format + i), 1);
+		i += (len != 0) ? 1 : 0;
 	}
-	*buffer_pos = pos;
-	return (count);
+	cleanup(args, output);
+	return (ret);
 }
 
 /**
- * _printf - produces output according to a format
- * @format: character string
+ * _printf - Outputs a formatted string.
+ * @format: Character string to print - may contain directives.
  *
- * Return: the number of characters printed excluding the null byte
- * used to end output to strings
+ * Return: The number of characters printed.
  */
 int _printf(const char *format, ...)
 {
-	va_list ap;
-	unsigned int i = 0, buffer_pos = 0, count = 0;
-	char *res_str, *aux, buffer[BUFFER_SIZE];
+	buffer_t *output;
+	va_list args;
+	int ret;
 
-	if (!format || !format[0])
+	if (format == NULL)
 		return (-1);
-	va_start(ap, format);
-	aux = malloc(sizeof(char) * 2);
-	while (format && format[i])
-	{
-		if (format[i] == '%')
-		{
-			res_str = treat_format(format, &i, ap);
-			count += buffer_add(buffer, res_str, &buffer_pos);
-			free(res_str);
-		}
-		else
-		{
-			aux[0] = format[i++];
-			aux[1] = '\0';
-			count += buffer_add(buffer, aux, &buffer_pos);
-		}
-	}
-	count += buffer_print(buffer, buffer_pos);
-	free(aux);
-	va_end(ap);
-	if (!count)
-		count = -1;
-	return (count);
+	output = init_buffer();
+	if (output == NULL)
+		return (-1);
+
+	va_start(args, format);
+
+	ret = run_printf(format, args, output);
+
+	return (ret);
 }
