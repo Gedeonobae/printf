@@ -20,7 +20,7 @@
 
 /* Length Modifier Macros */
 #define SHORT 1
-#define LONG 2
+ LONG 2
 
 /**
  * struct buffer_s - A new type defining a buffer struct.
