@@ -1,62 +1,89 @@
-.TH man 3 "05 October 2021" "0.20" "_printf man page"
+.\" _printf man page /usr/share/man/man3/printf.3
+.\"
+.TH _PRINTF 3 "5-10-2021" "0.1" "ALX-Holberton _printf"
+
 .SH NAME
-.B _printf
-- Formatted output conversion.
+_printf
+
+.B_printf - format and print data. Part of a project at ALX- School.
+
 .SH SYNOPSIS
-.B #include "main.h"
+Part of a project at ALX- school.
+This project mimics the printf found in in C.
 
-.B int _printf(const char *
-.I format
-.B , ...)
+_printf FORMAT [ARGUMENT]...
+.ss
+
 .SH DESCRIPTION
-.B _printf()
-Prints to standard output under the control of a 
-.I format
-.SH Return value
-On successful return, these functions return the number of characters printed, excluding the null byte used to end output to strings.
 
-If an output error is encountered, a negative value is returned.
-.SH Format
-.TP
-.BR c
-The int argument is converted to an unsigned char, then the resulting character is written
-.TP
-.B s
-The const char * argument is expected to be a pointer to an array of character type (pointer to a string). Characters from the array are written up to a terminating null byte, but do ot include the terminating null byte.
-.TP
-.B S
-Prints a string. Non printable characters are printed as "\x" followed by their ASCII values in two digit hexadecimal
-.TP
-.B d, i
-The int argument is converted to signed decimal notation.
-.TP
-.B x, X
-The unsigned int argument is converted to unsigned lowercase hexadecimal notation(x), or unsigned uppercase hexadecimal notation(X).
-.TP
-.B u
-The unsigned int argument is converted to unsigned decimal notation
-.TP
-.B o, b
-The unsigned int argument is converted to unsigned octal notation(o) or binary notation(b).
-.TP
-.B p
-Address is printed in hexadecimal.
-.TP
-.B r
-Prints a string in reverse.
-.TP
-.B R
-Prints a string converted to rot13
-.TP
-.B %
-A '%' is written but no argument is converted. The complete version specification is '%%'
-.SH EXAMPLE
-#include "main.h"
+_printf() the function produces output according to format string that \
+specifies how subsequent arguments are written and converted to stdout, the \
+standard output stream.
 
-_printf("%s", "my name",);
-.SH SEE ALSO
-.I printf(3)
+_printf() will loop through the format for a conversion specifier (%). If found\
+, it will access an array of structures and match the corresponding character \
+with the given function. The specified function will return a string-converted \
+version of the result and immediately passed into the buffer.
+
+.SH CONVERSION SPECIFIERS
+
+.IP %s
+prints a string.
+.IP %c
+prints a character.
+.IP %d
+prints an integer. Same as %i.
+.IP %i
+See %d.
+.IP %u
+Prints unsigned int.
+.IP %o
+Converts unsigned int to octal.
+.IP %x
+Converts unsigned int to hexadecimal (lowercase)
+.IP %X
+Converts unsigned int to hexadecimal (uppercase)
+.IP %r
+Prints reverse of intput string
+.IP %R
+Converts string to rot13
+
+.SH OPTIONS
+
+Pending
+
+.SH FORMAT
+controls the output as in C printf.  Interpreted sequences are:
+
+       \n     new line
+
+       \t     tab
+
+       %%     a single %
+
+.SS Example
+.RS
+_printf("Hello %s", "world");
+Prints string "Hello world"
+
+_printf("They call me mad, but one day when history of France is written, they \
+will mark my name well ...%s ", "Sidney Applebaum")
+
+.RE
+
+.SS Return Value
+Upon success, these main function will return the number of characters printed.
+
+.SH "SEE ALSO"
+.SH ""
+
+.BR printf(1)
+
+.P
+
 .SH BUGS
-No known bugs.
-.SH AUTHOR
+Memory issues are known to frequent this function. User beware.
+
+.SH "AUTHOR"
+
 Gedeon Obae Gekonge,Ruth Mensire
