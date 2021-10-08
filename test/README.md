@@ -1,1 +1,1 @@
-Testing script
+test the script
