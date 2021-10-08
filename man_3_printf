@@ -46,7 +46,7 @@ Converts unsigned int to hexadecimal (uppercase)
 .IP %r
 Prints reverse of intput string
 .IP %R
-Converts string to rot13
+Converts string to ROT 13.
 
 .SH OPTIONS
 
