@@ -10,7 +10,7 @@ recreation of the C standard library function, `printf`.
 
 The `_printf` function was coded on an Ubuntu 14.04 LTS machine with `gcc` version 4.8.4.
 
-## Usage :running:
+## Usage, :running:
 
 To use the `_printf` function, assuming the above dependencies have been installed,
 compile all `.c` files in the repository and include the header `main.h` with
