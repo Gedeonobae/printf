@@ -17,6 +17,7 @@ compile all `.c` files in the repository and include the header `main.h` with
 any main function.
 
 <h2>More Info</h2>
+
 <h3>Authorized functions and macros</h3>
 <h6>
     write (man 2 write)
