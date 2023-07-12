@@ -21,6 +21,7 @@ any main function.
 <h2>More Info</h2>
 
 <h3>Authorized functions and macros</h3>
+
 <h6>
     write (man 2 write)
     malloc (man 3 malloc)
@@ -33,6 +34,7 @@ any main function.
 <h2>Tasks</h2>
 
 <ul>
+    
 <li><h4>0. -I'm not going anywhere. You can print that wherever you want to. I'm here and I'm a Spur for life</h4>
 <p><Write a function that produces output according to a format.
 
@@ -50,7 +52,9 @@ any main function.
     You don’t have to handle precision
     You don’t have to handle the length modifiers
 </p>
+
 </li>
+
 li> </li>
 <li><h4>1. -Education is when you read the fine print. Experience is what you get if you don't </h4>
 <p>Handle the following conversion specifiers:
