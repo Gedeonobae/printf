@@ -31,6 +31,7 @@ any main function.
     va_copy (man 3 va_copy)
     va_arg (man 3 va_arg)
 </h6>
+
 <h2>Tasks</h2>
 
 <ul>
